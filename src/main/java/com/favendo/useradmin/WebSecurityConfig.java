@@ -23,10 +23,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery(
-                        "select username,password,1 from sec_user where username=?")
+                        "select login,password,1 from sec_user where login=?")
                 .authoritiesByUsernameQuery(
-                        "select u.username, r.role_name from sec_user as u inner join sec_user_role as ur on u.id = ur.user_id " +
-                                " inner join sec_role as r on ur.role_id = r.id where u.username=?");
+                        "select u.login, r.role_name from sec_user as u inner join sec_user_role as ur on u.id = ur.user_id " +
+                                " inner join sec_role as r on ur.role_id = r.id where u.login=?");
     }
 
     @Override
@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/403")
                 .and()
-                .csrf();
+                .csrf().disable();
 //                .init(http);
     }
 }
