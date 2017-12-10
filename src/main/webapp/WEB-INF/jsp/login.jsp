@@ -17,9 +17,16 @@
     <div>
         <label>Password:</label>
         <input name="password"/>
-        <%--<form:errors path="password"/>--%>
     </div>
     <input type="submit"/>
+    <c:if test="${param.error != null}">
+    <div style="font-size:20; color:#FF1C19;">
+        <spring:message code="user.login.welcome.errormessage"/>
+    </div>
+
+</c:if>
+    <div><form:errors /></div>
+
 </form>
 
 </body>
