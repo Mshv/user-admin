@@ -1,0 +1,2 @@
+1) replace JSP url with relative paths
+2)
