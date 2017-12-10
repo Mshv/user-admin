@@ -1,10 +1,7 @@
 package com.favendo.useradmin.domain;
 
-import netscape.security.Privilege;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
+
 @Entity
 @Table(name = "sec_role")
 public class RoleEntity {
