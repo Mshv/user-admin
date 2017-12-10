@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IUserRepository extends CrudRepository<UserEntity,Long> {
 
-    List<UserEntity> findUserByUsername(String username);
+    UserEntity findFirstByUsername(String username);
 }

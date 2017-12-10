@@ -16,4 +16,6 @@ public interface IUserService {
     void update(UserEntity createUserForm);
 
     void deleteUser(Long userId);
+
+    public UserEntity findUserByCurrentUserName(String currentUserName);
 }

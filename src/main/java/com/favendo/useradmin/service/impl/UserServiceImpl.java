@@ -61,4 +61,10 @@ public class UserServiceImpl implements IUserService {
     public void deleteUser(Long userId) {
         userRepository.delete(userId);
     }
+
+    @Override
+    @Transactional
+    public UserEntity findUserByCurrentUserName(String currentUserName) {
+        return userRepository.findFirstByUsername(currentUserName);
+    }
 }

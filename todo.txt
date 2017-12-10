@@ -1,2 +1,6 @@
 1) replace JSP url with relative paths
-2)
+2)use resources and noauth
+3)run on tomcat
+4)bootstrap
+3)csrf enable
+3) convert entity to dto in controller
