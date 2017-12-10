@@ -27,5 +27,9 @@
         Last Name: <c:out value="${userEntity.lastName}"/>
     </div>
 
+    <div>
+        <c:url var="thisURL" value="/logout"/>
+        <a href="<c:out value="${thisURL}"/>">Logout</a>
+    </div>
 </body>
 </html>
