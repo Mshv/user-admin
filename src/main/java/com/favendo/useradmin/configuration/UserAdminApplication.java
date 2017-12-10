@@ -1,30 +1,41 @@
-package com.favendo.useradmin;
+package com.favendo.useradmin.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import javax.sql.DataSource;
 import java.util.Locale;
 
-@Import(value = WebSecurityConfig.class)
+@Import(value = {WebSecurityConfig.class, UserAdminWebMVCConfiguration.class} )
 @SpringBootApplication  //@EnableAutoConfiguration
-public class UserAdminApplication extends WebMvcConfigurerAdapter{
+public class UserAdminApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(UserAdminApplication.class, args);
 	}
 
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(UserAdminApplication.class);
+	}
 
 	@Bean
 	public MessageSource messageSource() {
@@ -35,25 +46,6 @@ public class UserAdminApplication extends WebMvcConfigurerAdapter{
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
 	}
-	@Bean
-	public LocaleResolver localeResolver(){
-		CookieLocaleResolver resolver = new CookieLocaleResolver();
-		resolver.setDefaultLocale(new Locale("en"));
-		resolver.setCookieName("myLocaleCookie");
-		resolver.setCookieMaxAge(4800);
-		return resolver;
-	}
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		LocaleChangeInterceptor interceptor = localeChangeInterceptor();
-		registry.addInterceptor(interceptor);
-	}
-	@Bean
-	public LocaleChangeInterceptor localeChangeInterceptor() {
-		LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-		interceptor.setParamName("mylocale");
-		return interceptor;
-	}
 
 	@Bean
 	public LocalValidatorFactoryBean validator() {
@@ -62,21 +54,6 @@ public class UserAdminApplication extends WebMvcConfigurerAdapter{
 		return bean;
 	}
 
-	/*@Bean
-	public LocaleResolver localeResolver() {
-		SessionLocaleResolver slr = new SessionLocaleResolver();
-		slr.setDefaultLocale(Locale.US);
-		return slr;
-	}
 
-	@Bean
-	public LocaleChangeInterceptor localeChangeInterceptor() {
-		LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-		lci.setParamName("lang");
-		return lci;
-	}
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(localeChangeInterceptor());
-	}*/
+
 }

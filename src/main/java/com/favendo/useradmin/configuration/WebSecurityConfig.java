@@ -1,4 +1,4 @@
-package com.favendo.useradmin;
+package com.favendo.useradmin.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
