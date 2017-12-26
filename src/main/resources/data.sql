@@ -8,6 +8,10 @@ INSERT INTO sec_user (id, login, first_name, last_name, email, password) VALUES 
 INSERT INTO sec_role(id, role_name) VALUES (1,'ROLE_ADMIN');
 INSERT INTO sec_role(id, role_name) VALUES (2,'ROLE_USER');
 --UserRoles
+INSERT INTO sec_user_role (user_id , role_id) VALUES (5,2);
 INSERT INTO sec_user_role (user_id , role_id) VALUES (5,1);
+
+
 INSERT INTO sec_user_role (user_id , role_id) VALUES (1,2);
+INSERT INTO sec_user_role (user_id , role_id) VALUES (3,2);
 

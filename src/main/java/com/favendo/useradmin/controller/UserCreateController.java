@@ -61,6 +61,6 @@ public class UserCreateController {
             result.reject("user.error.exists");
             return "addUser";
         }
-        return "redirect:/index";
+        return "redirect:/admin/user/list";
     }
 }

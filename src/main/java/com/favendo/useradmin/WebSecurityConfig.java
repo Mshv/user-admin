@@ -1,6 +1,7 @@
 package com.favendo.useradmin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,8 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery(
                         "select login,password,1 from sec_user where login=?")
                 .authoritiesByUsernameQuery(
-                        "select u.login, r.role_name from sec_user as u inner join sec_user_role as ur on u.id = ur.user_id " +
-                                " inner join sec_role as r on ur.role_id = r.id where u.login=?");
+                        "select u.login, r.role_name from sec_user as u left join sec_user_role as ur on u.id = ur.user_id " +
+                                " left join sec_role as r on ur.role_id = r.id where u.login=?");
     }
 
     @Override
@@ -34,17 +35,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 //                .antMatchers("/login/**").access("isAnonymous()")
-                .antMatchers("/user/**").access("hasRole('ROLE_USER')")
+                .antMatchers("/").access("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().loginPage("/login")
                 .usernameParameter("username").passwordParameter("password")
+                .successHandler(authenticationSuccessHandler())
                 .and()
                 .logout().logoutSuccessUrl("/login")
                 .and()
-                .exceptionHandling().accessDeniedPage("/403")
+                .exceptionHandling().accessDeniedPage("/accessDenied")
                 .and()
                 .csrf().disable();
 //                .init(http);
+    }
+
+    @Bean
+    public MySimpleUrlAuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new MySimpleUrlAuthenticationSuccessHandler();
     }
 }
