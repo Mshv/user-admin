@@ -79,7 +79,5 @@ The number of total users are : <c:out value="${userCount}"/>
     </div>
 </div>
 <%@ include file = "footer.jsp" %>
-<script type="text/javascript" src="/webjars/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>

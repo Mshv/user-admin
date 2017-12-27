@@ -9,7 +9,7 @@
     <title><spring:message code="login.page.welcome.title"/></title>
 </head>
 <body>
-<form method="post" action="/login" >
+<form method="post" action="login" >
 
     <%@ include file = "header.jsp" %>
 
@@ -61,7 +61,7 @@
     </div>
     <%@ include file = "footer.jsp" %>
 </form>
-<script type="text/javascript" src="/webjars/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>

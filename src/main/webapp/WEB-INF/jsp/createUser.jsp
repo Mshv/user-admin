@@ -6,7 +6,7 @@
 
 
 
-<form:form method="POST" action="/admin/user/edit" modelAttribute="createUserForm" data-toggle="validator" class="form-horizontal" role="form">
+<form:form method="POST" action="${pageContext.request.contextPath}/admin/user/edit" modelAttribute="createUserForm" data-toggle="validator" class="form-horizontal" role="form">
 
     <%@ include file = "header.jsp" %>
 

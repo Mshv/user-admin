@@ -8,7 +8,7 @@
 
 <html>
 <head>
-    <link rel='stylesheet' href='/webjars/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='${pageContext.request.contextPath}/webjars/bootstrap/3.2.0/css/bootstrap.min.css'>
 </head>
 <style>
     /* Remove the navbar's default margin-bottom and rounded borders */

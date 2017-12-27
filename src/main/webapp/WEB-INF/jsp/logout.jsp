@@ -18,13 +18,13 @@
         <div class="modal-content">
             <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
             <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to log-off?</div>
-            <div class="modal-footer"><a href="/logout" class="btn btn-primary btn-block">Logout</a></div>
+            <div class="modal-footer"><a href="${pageContext.request.contextPath}/logout" class="btn btn-primary btn-block">Logout</a></div>
         </div>
     </div>
 </div>
 <link rel='stylesheet' href='/webjars/bootstrap/3.2.0/css/bootstrap.min.css'>
-<script type="text/javascript" src="/webjars/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <%--</body>
 </html>--%>
