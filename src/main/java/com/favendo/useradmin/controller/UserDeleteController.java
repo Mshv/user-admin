@@ -16,6 +16,6 @@ public class UserDeleteController {
     @RequestMapping(value = "/admin/user/delete" , method = RequestMethod.GET)
     public String deleteUser(@RequestParam(required = true) Long userId){
         userService.deleteUser(userId);
-        return "redirect:/";
+        return "redirect:/admin/user/list";
     }
 }
