@@ -46,7 +46,7 @@ public class UserCreateController {
             return "createUser";
         }*/
 
-        if (result.hasErrors()) {
+        if (result.hasErrors()) {   // if there is a Spring validation problem
             return "createUser";
         }
         try {

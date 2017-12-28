@@ -13,7 +13,10 @@ public class PasswordMatchValidator implements ConstraintValidator<PasswordMatch
 
     @Override
     public boolean isValid(UserEntity user, ConstraintValidatorContext context) {
-        if (!user.getPassword().equals(user.getConfirmPassword())) {
+        if(user.getConfirmPassword() == null){   // object is coming from DB
+            return true;
+        }
+        if (!user.getPassword().equals(user.getConfirmPassword())) { // object is coming from UI
             return false;
         }
         return true;
