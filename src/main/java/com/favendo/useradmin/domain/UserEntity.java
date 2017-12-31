@@ -2,9 +2,11 @@ package com.favendo.useradmin.domain;
 
 import com.favendo.useradmin.validation.jsr.PasswordMatch;
 import com.favendo.useradmin.validation.jsr.ValidEmail;
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 import java.util.Set;
@@ -48,10 +50,10 @@ public class UserEntity {
     private String lastName;
 
 
-    @NotNull
-    //@Size(min=1,max = 20)
-    //@Email -  Hibernate considers the old intranet addresses format: myaddress@myserver as valid which is no good.
-    @ValidEmail
+    @NotNull(message = "{email.notnull}")
+    //@Email -  Hibernate considers the old intranet addresses format: myaddress@myserver as valid which is no good.    @Email(message = "{user.email.email}")
+    @ValidEmail(message = "{user.email.valid}")
+    //@Pattern(regexp="^([a-zA-Z0-9\\-\\.\\_]+)'+'(\\@)([a-zA-Z0-9\\-\\.]+)'+'(\\.)([a-zA-Z]{2,4})$", message = "{user.email.pattern}")
     @Column(name = "email", nullable = false)
     private String email;
 
