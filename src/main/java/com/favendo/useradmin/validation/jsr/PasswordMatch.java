@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = PasswordMatchValidator.class)
 @Documented
 public @interface PasswordMatch {
-    String message() default "user.error.password.no_match";
+    String message() default "{user.error.password.no_match}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
