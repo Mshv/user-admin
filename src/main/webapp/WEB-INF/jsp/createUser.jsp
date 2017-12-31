@@ -33,7 +33,7 @@
 
     <div class="form-group">
         <label for="firstName" class="control-label">First Name</label>
-        <form:input  path="firstName" type="text" class="form-control"  id="firstName" placeholder="First Name" required="required" style="width: 250px;"/>
+        <form:input  path="firstName" type="text" class="form-control" id="firstName" placeholder="First Name" required="required" style="width: 250px;"/>
         <form:errors path="firstName" cssClass="error"/>
     </div>
 
@@ -45,8 +45,9 @@
 
     <div class="form-group">
         <label for="email" class="control-label">Email</label>
-        <form:input  path="email" type="email" class="form-control"  id="email" placeholder="Email" required="required" style="width: 250px;"/>
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <form:input  path="email" type="email" class="form-control"  id="email" placeholder="Email" data-error="Bruh, that email address is invalid"  required="required"  style="width: 250px;"/>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.<br></small>
+        <div class="help-block with-errors"></div>
         <form:errors path="email" cssClass="error"/>
     </div>
 
@@ -84,6 +85,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="https://www.jquery-az.com/boots/js/validate-bootstrap/validate-bootstrap.jquery.min.js"></script>
+<%--<script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>--%>
+<script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+
+
+
 
 
 <script>
@@ -119,7 +125,25 @@
 
     $(function() {
 
+        $("#firstName,#lastName").keydown(function (e) {
 
+            if (e.shiftKey || e.ctrlKey || e.altKey) {
+
+                e.preventDefault();
+
+            } else {
+
+                var key = e.keyCode;
+
+                if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+
+                    e.preventDefault();
+
+                }
+
+            }
+
+        });
 
         $('form').validator({
             validHandlers: {
