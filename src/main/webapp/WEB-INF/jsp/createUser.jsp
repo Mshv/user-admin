@@ -58,14 +58,18 @@
 
     <div class="form-group">
         <label for="confirmPassword" class="control-label">Confirmed Password</label>
-        <form:input  path="confirmPassword" type="password" class="form-control"  id="confirmPassword" placeholder="Confirm Password" required="required" style="width: 250px;"/>
+        <form:input  path="confirmPassword" type="password" class="form-control"  id="confirmPassword" placeholder="Confirm Password" required="required" style="width: 250px;" onkeyup="checkPass(); return false;"/>
+        <span id="confirmMessage" class="confirmMessage"></span>
         <form:errors path="confirmPassword" cssClass="error"/>
     </div>
 
 
+<div>
+    <form:errors cssClass="error" />
+</div>
     <div>
+
         <input type="submit"/>
-        <form:errors />
     </div>
     </div>
         <%@ include file = "rightSideNav.jsp" %>
@@ -83,7 +87,40 @@
 
 
 <script>
+
+    function checkPass()
+    {
+        //Store the password field objects into variables ...
+        var pass1 = document.getElementById('password');
+        var pass2 = document.getElementById('confirmPassword');
+        //Store the Confimation Message Object ...
+        var message = document.getElementById('confirmMessage');
+        //Set the colors we will be using ...
+        var goodColor = "#66cc66";
+        var badColor = "#ff6666";
+        //Compare the values in the password field
+        //and the confirmation field
+        if(pass1.value == pass2.value){
+            //The passwords match.
+            //Set the color to the good color and inform
+            //the user that they have entered the correct password
+            pass2.style.backgroundColor = goodColor;
+            message.style.color = goodColor;
+            message.innerHTML = "Passwords Match!"
+        }else{
+            //The passwords do not match.
+            //Set the color to the bad color and
+            //notify the user.
+            pass2.style.backgroundColor = badColor;
+            message.style.color = badColor;
+            message.innerHTML = "Passwords Do Not Match!"
+        }
+    }
+
     $(function() {
+
+
+
         $('form').validator({
             validHandlers: {
                 '.customhandler':function(input) {
