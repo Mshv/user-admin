@@ -1,3 +1,4 @@
+/*
 package com.favendo.useradmin;
 
 import org.junit.Test;
@@ -14,3 +15,4 @@ public class UserAdminApplicationTests {
 	}
 
 }
+*/
